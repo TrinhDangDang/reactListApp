@@ -1,40 +1,19 @@
 import React from 'react';
-import {useState} from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
+import ItemList from './ItemList';
 
-const Content = () => {
-    const[items, setItems] = useState([
-        {
-            id: 1,
-            check: false,
-            item: 'strawberry'
-        },
-        {
-            id: 2,
-            check: false,
-            item: 'banana'
-        },
-        {
-            id: 3,
-            check: false,
-            item: 'wheel'
-        }
-    ])
+const Content = ({items, handleCheck, handleDelete}) => {
    
   return (
     <main>
-        <ul>
-            {items.map((item) => (
-                <li className = "item" key={item.id}>
-                    <input
-                    type = "checkbox"
-                    checked={item.checked}
-                    />
-                    <label>{item.item}</label>
-                    <FaTrashAlt role="button" tabIndex="0"/>
-                </li>
-            ))}
-        </ul>
+        {items.length ? (
+            <ItemList 
+                items={items}
+                handleCheck={handleCheck}
+                handleDelete={handleDelete}
+            />
+        ) : (
+            <p style={{marginTop: '2rem'}}>Your list is empty.</p>
+        )}
     </main>
   )
 }
